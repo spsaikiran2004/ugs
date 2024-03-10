@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trello-like Board</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.3/dist/tailwind.min.css">
+  <style>
+    .card-placeholder {
+      background-color: green;
+      border: 2px dashed #333;
+    }
+
+    /* Add background color to the card */
+    .bg-custom {
+      background-color: green; /* Change this color code as needed */
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container mx-auto">
+    <div class="flex">
+      <div class="w-1/3 p-4" @dragover.prevent @drop="onDrop('todo')">
+        <div class="bg-gray-200 p-2 rounded">
+          <h2 class="text-lg font-bold mb-2">To Do</h2>
+          <div v-for="card in todoCards" :key="card.id" class="bg-custom p-2 mb-2 rounded shadow"
+               draggable="true" @dragstart="onDragStart(card, 'todo')" @dragend="onDragEnd">
+            {{ card.text }}
+          </div>
+        </div>
+      </div>
+      <!-- Add similar sections for 'In Progress' and 'Done' columns -->
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        todoCards: [
+          { id: 1, text: 'Task 1' },
+          { id: 2, text: 'Task 2' },
+          // Add more tasks as needed
+        ],
+        // Add similar data for 'In Progress' and 'Done' columns
+      },
+      methods: {
+        onDrop(column) {
+          // Handle the drop event
+        },
+        onDragStart(card, column) {
+          // Handle the drag start event
+        },
+        onDragEnd() {
+          // Handle the drag end event
+        },
+      },
+    });
+  </script>
+</body>
+</html>
